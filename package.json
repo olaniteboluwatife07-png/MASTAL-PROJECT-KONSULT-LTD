@@ -1,0 +1,20 @@
+{
+  "name": "mastal-project-konsult-ltd",
+  "version": "1.0.0",
+  "description": "MASTAL PROJECT KONSULT LIMITED - Building, Civil and Housing Development Consultants",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static HTML site - no build step required'",
+    "lint": "echo 'No linting configured for static HTML'"
+  },
+  "keywords": [
+    "construction",
+    "consulting",
+    "quantity-surveying"
+  ],
+  "author": "MASTAL PROJECT KONSULT LIMITED",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/speed-insights": "^1.0.12"
+  }
+}
