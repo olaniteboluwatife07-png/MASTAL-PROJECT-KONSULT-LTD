@@ -89,6 +89,22 @@ body, html {
   height: 100%;
   line-height: 1.8;
 }
+/* Ensure text wraps and doesn't get cut */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* Never use fixed widths that clip content */
+h1, h2, h3, p {
+  overflow: visible;
+  text-overflow: unset;
+  white-space: normal; /* NOT nowrap */
+}
 
 /* Full height image header */
 .bgimg-1 {
