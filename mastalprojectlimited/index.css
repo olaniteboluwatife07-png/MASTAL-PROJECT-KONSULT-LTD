@@ -123,17 +123,17 @@ body, html {
 }
 
 .company-logo{
-    width:85px;
+    width:90px;
     height:auto;
 }
 
 .niqs-logo{
-    width:85px;
+    width:90px;
     height:auto;
 }
 
 .logo-container img{
-    border-radius:15px;
+    border-radius:16px;
 }
 
 nav ul{
