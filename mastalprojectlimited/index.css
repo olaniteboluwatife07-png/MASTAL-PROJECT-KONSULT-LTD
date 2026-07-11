@@ -649,9 +649,9 @@ animation:glitter 1.5s infinite;
         #4fc3f7
         #ffffff
     );
-    padding : 50px;
-    text-align : center;
-    border-radius : 10px;
+    padding: 50px;
+    text-align: center;
+    border-radius: 10px;
     margin: 20px;
 }
 
@@ -677,12 +677,12 @@ animation:glitter 1.5s infinite;
 
 #share a{
     display:inline-block;
-    background : #001f4d;
+    background: #001f4d;
     color: white;
-    padding : 10px 20px;
+    padding: 10px 20px;
     margin: 5px;
     text-decoration: none;
-    border-radius : 5px;
+    border-radius: 5px;
 }
 
 .contact{
@@ -704,7 +704,7 @@ footer{
         #1e90ff,
         #001f4d,
         #4fc3f7,
-        #ffffff
+        #ffffff,
 );
 
 
@@ -714,6 +714,76 @@ footer h3{
 
 footer p{
     margin:8px 0;
+}
+/* OUR WORKS SECTION */
+
+.works{
+    background:#f5f8fc;
+    padding:70px 20px;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+}
+
+.works h2{
+    text-align:center;
+    color:#003366;
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:40px;
+    font-size:18px;
+}
+
+.work-card{
+    background:#ffffff;
+    padding:25px;
+    margin-bottom:20px;
+    border-left:6px solid #0077cc;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.work-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+.work-card h3{
+    margin:0;
+    color:#003366;
+    font-size:24px;
+}
+
+.work-card p{
+    margin-top:10px;
+    color:#555;
+    font-size:16px;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.works h2{
+    font-size:30px;
+}
+
+.work-card{
+    padding:20px;
+}
+
+.work-card h3{
+    font-size:20px;
+}
+
 }
 
 @media (min-width: 600px) {
