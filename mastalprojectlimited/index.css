@@ -508,6 +508,28 @@ box-shadow:
     0 0 25px #4fc3f7;
 
 }
+/* Force the newsletter text to use full width */
+#newsletter-articles p,
+#newsletter-articles .welcome-text,
+#newsletter-articles div {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+}
+
+/* Make sure the section itself doesn't shrink */
+#newsletter-articles {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 40px 20px !important;  /* override the 60px */
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+}    
 
 .news-item:hover{
 
