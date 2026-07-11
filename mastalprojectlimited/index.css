@@ -171,20 +171,22 @@ nav ul li a{
     font-size:40px;
 }
 @media(max-width:768px){
-    .hero-section{
-        flex-direction: column;
-    }
-    .hero-section img{
-        width:100%
-        height: auto;
-    }
-.hero-text{
+  .bgimg-1{
+    flex-direction: column;
+  }
+  
+  .bgimg-1 img{
+    width:100%;
+    height: auto;
+  }
+  
+  .hero-text{
     position: relative;
     width: 100%;
     padding: 20px;
     color: #001f4d;
     background: rgba(255,255,255,0.9);
-   }
+  }
 }
 .hero p{
     font-size:25px;
@@ -204,6 +206,71 @@ nav ul li a{
 
 section{
     padding:60px 50px;
+}
+/* ========== HERO SECTION MOBILE FIX ========== */
+@media (max-width: 768px) {
+  /* The hero background image section */
+  .bgimg-1 {
+    position: relative;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* The text overlay container */
+  .bgimg-1 .mastal-display-left {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 100%;
+    padding: 30px 20px !important;
+    background: rgba(0, 31, 77, 0.85); /* dark blue overlay for readability */
+  }
+  
+  /* Make text white but readable on dark background */
+  .bgimg-1 .mastal-text-white {
+    color: #ffffff;
+  }
+  
+  /* Reduce huge text sizes */
+  .bgimg-1 .mastal-jumbo {
+    font-size: 2rem !important;
+  }
+  
+  .bgimg-1 .mastal-xxlarge {
+    font-size: 1.3rem !important;
+  }
+  
+  .bgimg-1 .mastal-large {
+    font-size: 1rem !important;
+  }
+  
+  /* Fix the "Contact Us" button */
+  .bgimg-1 .btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+}
+
+/* ========== CHATBOT BUTTON FIX ========== */
+#chatbot {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+#chatbot button {
+  padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 25px;
+  background: #1e90ff;
+  color: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  cursor: pointer;
 }
 
 .about-us{
@@ -622,12 +689,7 @@ footer h3{
 footer p{
     margin:8px 0;
 }
-.chatbot-botton {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-}
+
 @media (min-width: 600px) {
   .header {grid-area: 1 / span 6;}
   .menu {grid-area: 2 / span 1;}
