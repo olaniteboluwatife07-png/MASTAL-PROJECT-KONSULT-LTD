@@ -521,7 +521,11 @@ box-shadow:
     0 0 60px #4fc3f7;
 
 }
-
+#newsletter-articles > div {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+}
 .news-item img{
 
 width:100%;
