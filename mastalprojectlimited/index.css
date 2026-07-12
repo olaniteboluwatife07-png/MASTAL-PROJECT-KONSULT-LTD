@@ -517,63 +517,6 @@ section{
     border-radius:10px;
 }
 
-#vision-mission{
-    background: linear-gradient(
-        135deg,
-        #ffffff 0%,
-        #d6f0ff 20%,
-        #87ceeb 40%,
-        #4fc3f7 60%,
-        #1e90ff 80%,
-        #001f4d 100%
-    );
-
-    padding: 40px 20px;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 1200px;
-    box-sizing: border-box;
-    border-radius: 15px;
-    color: #001f4d;
-}
-@media (min-width: 768px) {
-    #vission-mission {
-        padding: 60px;
-        margin: 20px auto;
-    }
-}
-
-#vision-mission h2{
-    color: #001f4d;
-    text-align:center;
-    margin-bottom:30px;
-    font-size: clamp(1.5rem, 4vw, 2rem);
-}
-
-#vision-mission h3{
-    color:#001f4d;
-    margin-top:20px;
-    font-size: clamp(1.2rem, 3vw, 1.5rem);
-}
-
-#vision-mission p,
-#vision-mission li{
-    font-size:  clamp(1rem, 2.5vw,18px);
-    line-height:1.8;
-    word-break:normal;
-    overflow-wrap: break-word;
-}
-
-
-
-button:hover{
-    background:#1e90ff;
-}
-
-h1,h2{
-    color:#001f4d;
-}
-
 
 .services{
     display:grid;
