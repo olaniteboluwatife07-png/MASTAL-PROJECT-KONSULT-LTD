@@ -504,15 +504,6 @@ section{
   cursor: pointer;
 }
 
-.about-us{
-    text-align:center;
-    margin-bottom:40px;
-    color:#001f4d;
-}
-
-.about-us{
-    background:#f5f8fc;
-}
 
 .ceo{
     display:flex;
