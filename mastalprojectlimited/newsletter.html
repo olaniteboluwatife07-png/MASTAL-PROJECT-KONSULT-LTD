@@ -1,377 +1,507 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>NEWSLETTER.</title>
-
-<link rel="stylesheet" href="index.css">
-<style>
- #newsletter-articles{
-
-background: linear-gradient(
-    270deg,
-    #ffffff,
-    #dff6ff,
-    #87cefa,
-    #4fc3f7,
-    #1e90ff,
-    #001f4d,
-    #4fc3f7,
-    #ffffff
-);
-
-background-size: 800% 800%;
-
-animation: movingBlue 15s ease infinite;
-
-padding:40px 20px;
-
-margin:0 auto;
-
-width: 100%;
-
-max-width: 1200px;
-
-box-sizing: border-box;    
-
-border-radius:20px;
-
-box-shadow:
-    0 0 20px #87cefa,
-    0 0 40px #4fc3f7,
-    0 0 60px #1e90ff;
-
-}
-
-#newsletter-articles p{
-    font-size: 12px
-    line-height: 1.6;
-    word-break: normal;
-    max-width: 100px;
-}
-@keyframes movingBlue{
-
-0%{
-    background-position:0% 50%;
-}
-
-50%{
-    background-position:100% 50%;
-}
-
-100%{
-    background-position:0% 50%;
-}
-
-}
-
-@media(min-width: 768px){
-    #newsletter-articles {
-        padding: 60px;
-        margin: 20px auto;
-    }
-.news-item{
-
-background:rgba(255,255,255,0.95);
-
-padding:30px;
-
-margin-bottom:25px;
-
-border-radius:15px;
-
-box-shadow:
-    0 0 15px #87cefa,
-    0 0 25px #4fc3f7;
-
-}
-/* Force the newsletter text to use full width */
-#newsletter-articles p,
-#newsletter-articles .welcome-text,
-#newsletter-articles div {
-  width: 100% ;
-  max-width: 100% ;
-  padding-left: center;
-  padding-right: center;
-  margin-left: center;
-  margin-right: center ;
-}
-
-/* Make sure the section itself doesn't shrink */
-#newsletter-articles {
-  width: 100% ;
-  max-width: 100% ;
-  padding: 40px 20px ;  /* override the 60px */
-  margin: 0 auto ;
-  box-sizing: border-box ;
-}    
-
-.news-item:hover{
-
-transform:translateY(-5px);
-
-transition:0.4s;
-
-box-shadow:
-    0 0 25px #ffffff,
-    0 0 40px #87cefa,
-    0 0 60px #4fc3f7;
-
-}
-#newsletter-articles  div {
-  width: 100%;
-  max-width: 100%;
-  padding: 0;
-}
-.news-item img{
-
-width:100%;
-
-max-width:400px;
-
-display:block;
-
-margin:auto;
-
-border-radius:15px;
-
-box-shadow:
-    0 0 15px #4fc3f7,
-    0 0 30px #87cefa;
-
-}
-
-.news-category{
-
-display:inline-block;
-
-background:white;
-
-padding:12px 22px;
-
-margin:5px;
-
-border-radius:25px;
-
-font-weight:bold;
-
-box-shadow:
-    0 0 10px #4fc3f7,
-    0 0 20px #87cefa;
-
-}
-
-.sparkle-banner{
-
-text-align: center;
-
-font-size:clamp(1.25rem, 4vw, 1.5rem);
-
-font-weight:bold;
-
-color:#ffffff;
-
-animation:glitter 1.5s infinite;
-
-}
-
-@keyframes glitter{
-
-0%{
-    text-shadow:
-        0 0 5px #ffffff,
-        0 0 10px #87cefa;
-}
-
-50%{
-    text-shadow:
-        0 0 20px #ffffff,
-        0 0 40px #4fc3f7,
-        0 0 60px #87cefa;
-}
-
-100%{
-    text-shadow:
-        0 0 5px #ffffff,
-        0 0 10px #87cefa;
-}
-
-}
-
-.fade-in{
-
-    animation: fadeIn 1.5s ease-in-out;
-}
-
-@keyframes fadeIn{
-
-    from{
-        opacity:0;
-        transform:translateY(30px);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mastal Project Konsult — CEO Spotlight</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --royal-blue: #1E3A8A;
+      --navy-blue: #0F172A;
+      --sky-blue: #38BDF8;
+      --light-blue: #E0F2FE;
+      --ice-blue: #F0F9FF;
+      --white: #FFFFFF;
+      --text: #1E293B;
     }
 
-    to{
-        opacity:1;
-        transform:translateY(0);
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #DBEAFE;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
     }
-}
-   
-</style>    
-<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>   
+
+    .newsletter-container {
+      max-width: 800px;
+      width: 100%;
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 25px 80px rgba(30, 58, 138, 0.2);
+    }
+
+    /* Header */
+    .nl-header {
+      background: linear-gradient(135deg, var(--navy-blue) 0%, var(--royal-blue) 100%);
+      padding: 48px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nl-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 400px;
+      height: 400px;
+      background: rgba(56, 189, 248, 0.08);
+      border-radius: 50%;
+    }
+
+    .nl-badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--sky-blue);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .nl-header h1 {
+      font-family: 'Playfair Display', serif;
+      color: var(--white);
+      font-size: 38px;
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .nl-header .subtitle {
+      color: rgba(255,255,255,0.6);
+      font-size: 15px;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+
+    .nl-divider {
+      width: 60px;
+      height: 3px;
+      background: var(--sky-blue);
+      margin: 20px auto 0;
+      border-radius: 2px;
+    }
+
+    /* Hero Section */
+    .nl-hero {
+      display: flex;
+      align-items: center;
+      padding: 48px 40px;
+      background: var(--ice-blue);
+      gap: 40px;
+    }
+
+    .ceo-photo {
+      flex-shrink: 0;
+      width: 180px;
+      height: 220px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #1E3A8A 0%, #0F172A 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(15, 23, 42, 0.25);
+    }
+
+    .ceo-photo::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+    }
+
+    .ceo-initials {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      font-weight: 900;
+      color: var(--sky-blue);
+      z-index: 1;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .ceo-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      color: var(--navy-blue);
+      margin-bottom: 4px;
+    }
+
+    .ceo-info .role {
+      color: var(--royal-blue);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .ceo-info p {
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .ceo-info .highlight {
+      color: var(--royal-blue);
+      font-weight: 600;
+    }
+
+    /* Stats Bar */
+    .nl-stats {
+      display: flex;
+      justify-content: space-around;
+      padding: 32px 40px;
+      background: var(--white);
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--royal-blue);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    /* Story Section */
+    .nl-story {
+      padding: 48px 40px;
+      background: var(--white);
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .section-label .line {
+      width: 40px;
+      height: 2px;
+      background: var(--sky-blue);
+    }
+
+    .section-label span {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--royal-blue);
+    }
+
+    .nl-story h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--navy-blue);
+      margin-bottom: 20px;
+    }
+
+    .nl-story p {
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    /* Quote */
+    .nl-quote {
+      background: linear-gradient(135deg, var(--navy-blue) 0%, var(--royal-blue) 100%);
+      padding: 40px;
+      margin: 0 40px 40px;
+      border-radius: 12px;
+      position: relative;
+    }
+
+    .nl-quote::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 80px;
+      color: rgba(56, 189, 248, 0.2);
+      position: absolute;
+      top: 10px;
+      left: 24px;
+      line-height: 1;
+    }
+
+    .nl-quote p {
+      color: rgba(255,255,255,0.9);
+      font-size: 18px;
+      font-style: italic;
+      line-height: 1.7;
+      padding-left: 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nl-quote .quote-author {
+      color: var(--sky-blue);
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 16px;
+      padding-left: 30px;
+      letter-spacing: 1px;
+    }
+
+    /* Achievements */
+    .nl-achievements {
+      padding: 0 40px 48px;
+    }
+
+    .nl-achievements h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--navy-blue);
+      margin-bottom: 24px;
+    }
+
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .achievement-card {
+      background: var(--light-blue);
+      padding: 24px;
+      border-radius: 10px;
+      border-left: 4px solid var(--sky-blue);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .achievement-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(30, 58, 138, 0.1);
+    }
+
+    .achievement-card h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--navy-blue);
+      margin-bottom: 8px;
+    }
+
+    .achievement-card p {
+      font-size: 13px;
+      color: #475569;
+      line-height: 1.6;
+    }
+
+    /* CTA */
+    .nl-cta {
+      background: var(--navy-blue);
+      padding: 40px;
+      text-align: center;
+    }
+
+    .nl-cta p {
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .nl-btn {
+      display: inline-block;
+      background: var(--sky-blue);
+      color: var(--navy-blue);
+      padding: 14px 36px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nl-btn:hover {
+      background: #0EA5E9;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(56, 189, 248, 0.3);
+    }
+
+    .nl-footer {
+      padding: 20px;
+      text-align: center;
+      background: var(--light-blue);
+      font-size: 12px;
+      color: #64748B;
+    }
+
+    @media (max-width: 640px) {
+      .nl-hero { flex-direction: column; text-align: center; }
+      .ceo-photo { width: 140px; height: 170px; }
+      .nl-stats { flex-wrap: wrap; gap: 20px; }
+      .achievements-grid { grid-template-columns: 1fr; }
+      .nl-header h1 { font-size: 28px; }
+      .nl-hero, .nl-story, .nl-quote, .nl-achievements { padding-left: 24px; padding-right: 24px; }
+      .nl-quote { margin-left: 24px; margin-right: 24px; }
+    }
+  </style>
 </head>
-<header>
-    <div class="navbar">
-        <img src="logo.jpg" class="logo">
-
-        <button id="menuBtn" onclick="openMenu()">☰ MENU</button>
-    </div>
-</header>
-
-<div id="sideMenu" class="side-menu">
-
-    <button class="close-btn" onclick="closeMenu()">✕ CLOSE</button>
-<div class="search-box">
-    <input type="text" placeholder="Search..." id="searchInput">
-</div>
-    <a href="index.html">Home</a>
-    <a href="aboutus.html">About Us</a>
-    <a href="services.html">Services</a>
-    <a href="visionandmission.html">vision</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="blog.html">Blog</a>
-    <a href="newsletter.html">News</a>
-    <a href="team.html">Our Team</a>
-    <a href="contact.html">Contact Us</a>
-     <a href="shareandcomment.html">share</a>
-</div>
-        
 <body>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4064757486716340"
-crossorigin="anonymous"></script>
-<section id="newsletter-articles">
-<div class="some-container">
-<h2>📰 Mastal Business Times</h2>
 
-<div class="sparkle-banner">
-    ✨ Excellence ✨ Innovation ✨ Integrity ✨ Professionalism ✨
-</div>
+  <div class="newsletter-container">
+    <!-- Header -->
+    <div class="nl-header">
+      <div class="nl-badge">Monthly Spotlight</div>
+      <h1>Leadership in<br>Construction Excellence</h1>
+      <p class="subtitle">Mastal Project Konsult Limited</p>
+      <div class="nl-divider"></div>
+    </div>
 
-<p class="news-intro">
-    Welcome to Mastal Business Times, the official newsletter of
-    Mastal Project Konsult Limited. 
-</p>
+    <!-- Hero -->
+    <div class="nl-hero">
+      <div class="ceo-photo">
+        <span class="ceo-initials">FJ</span>
+      </div>
+      <div class="ceo-info">
+        <h2>Olanite Fẹmi Joseph</h2>
+        <div class="role">Chief Executive Officer</div>
+        <p>Since co-founding <span class="highlight">Mastal Project Konsult Limited</span> in Lagos, Nigeria in 2013, Olanite Fẹmi Joseph has steered the firm from a local consultancy into a trusted name in civil and housing development across the region.</p>
+      </div>
+    </div>
 
+    <!-- Stats -->
+    <div class="nl-stats">
+      <div class="stat-item">
+        <div class="stat-number" data-target="12">0</div>
+        <div class="stat-label">Years in Business</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="50">0</div>
+        <div class="stat-label">Projects Delivered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="100">0</div>
+        <div class="stat-label">Client Satisfaction %</div>
+      </div>
+    </div>
 
-<!-- NEWS CATEGORIES -->
+    <!-- Story -->
+    <div class="nl-story">
+      <div class="section-label">
+        <div class="line"></div>
+        <span>The Journey</span>
+      </div>
+      <h3>From Vision to Landmark</h3>
+      <p>Olanite Fẹmi Joseph founded Mastal Project Konsult with a clear mission: to raise the standard of construction consultancy in Nigeria. Under his leadership, the company has expanded its portfolio to include roads, estates, schools, business centers, and office complexes.</p>
+      <p>What sets Fẹmi apart is his hands-on approach to cost estimation and project management. He believes that every structure should not only meet engineering standards but also serve the community it stands in. This philosophy has earned Mastal Project Konsult a reputation for reliability and precision.</p>
+    </div>
 
-<div class="news-categories">
+    <!-- Quote -->
+    <div class="nl-quote">
+      <p>Quality is not an act, it is a habit. Every blueprint we approve, every site we supervise, carries the promise of durability and trust.</p>
+      <div class="quote-author">— Olanite Fẹmi Joseph, CEO</div>
+    </div>
 
-    <span class="news-category">CEO Messages</span>
+    <!-- Achievements -->
+    <div class="nl-achievements">
+      <div class="section-label">
+        <div class="line"></div>
+        <span>Milestones</span>
+      </div>
+      <h3>Key Achievements</h3>
+      <div class="achievements-grid">
+        <div class="achievement-card">
+          <h4>🏗️ Diverse Portfolio</h4>
+          <p>Successfully delivered projects spanning residential estates, commercial buildings, road infrastructure, and educational facilities.</p>
+        </div>
+        <div class="achievement-card">
+          <h4>📊 Cost Mastery</h4>
+          <p>Developed proprietary cost estimation frameworks that have saved clients significant resources while maintaining top-tier quality.</p>
+        </div>
+        <div class="achievement-card">
+          <h4>🤝 Trusted Partnerships</h4>
+          <p>Built long-standing relationships with developers, government agencies, and private investors across Lagos and beyond.</p>
+        </div>
+        <div class="achievement-card">
+          <h4>🌱 Community Impact</h4>
+          <p>Championed projects that prioritize local employment and sustainable building practices in every community served.</p>
+        </div>
+      </div>
+    </div>
 
-    <span class="news-category">Project Updates</span>
+    <!-- CTA -->
+    <div class="nl-cta">
+      <p>Ready to bring your next project to life with proven expertise?</p>
+      <a href="#" class="nl-btn">Get in Touch</a>
+    </div>
 
-    <span class="news-category">Construction News</span>
+    <div class="nl-footer">
+      Mastal Project Konsult Limited · Lagos, Nigeria · Quality Construction Consultancy
+    </div>
+  </div>
 
-    <span class="news-category">Construction Consultancy</span>
+  <script>
+    // Animate stats on scroll
+    const stats = document.querySelectorAll('.stat-number');
+    let animated = false;
 
-</div>
+    function animateStats() {
+      stats.forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-target'));
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
 
-<!-- ARTICLE 1 -->
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            stat.textContent = target + (target === 100 ? '%' : '+');
+            clearInterval(timer);
+          } else {
+            stat.textContent = Math.floor(current) + (target === 100 ? '%' : '');
+          }
+        }, 16);
+      });
+    }
 
-<div class="news-item">
-
-    <alt="CEO Olanite Fẹmi Joseph">
-
-    <h3>
-        CEO Leads Mastal Project Konsult Limited to Greater Success
-    </h3>
-
-    <p>
-        Olanite Fẹmi Joseph, B.Tech, M.Sc, MNIQS, RQS, continues
-        to provide leadership and professional excellence as the
-        Chief Executive Officer of Mastal Project Konsult Limited.
-    </p>
-
-    <p>
-        Through his expertise as a Quantity Surveyor and Construction
-        Consultant, he has helped numerous clients achieve value for
-        money, effective project delivery and sustainable development.
-    </p>
-
-    <p>
-        His commitment to professionalism, integrity, innovation and
-        client satisfaction has positioned Mastal Project Konsult
-        Limited as a trusted consultancy firm in the areas of
-        quantity surveying, project management, building consultancy,
-        civil engineering consultancy and housing development.
-    </p>
-
-    <p>
-        The company remains committed to delivering high-quality
-        consultancy services that contribute positively to the
-        construction industry in Nigeria and beyond.
-    </p>
-
-</div>
-
-<!-- ARTICLE 2 -->
-
-<div class="news-item">
-
-    <h3>
-        Why Construction consultancy Is Important in Construction
-    </h3>
-
-    <p>
-        Construction Consultancy plays a vital role in the successful
-        execution of construction projects. It ensures that projects
-        are properly budgeted, monitored and delivered within cost.
-    </p>
-
-    <p>
-        At Mastal Project Konsult Limited, we help clients manage
-        construction costs, prepare bills of quantities and ensure
-        value for money throughout the life cycle of every project.
-    </p>
-
-</div>
-</div>
-     <amp-ad
-     layout="fixed"
-     width="728"
-     height="90"
-     type="adsense"
-     data-ad-client="ca-pub-4064757486716340"
-     data-ad-slot="7940618045">
-</amp-ad>
-</section>
-<script>
-function openMenu(){
-    document.getElementById("sideMenu").style.left="0";
-}
-
-function closeMenu(){
-    document.getElementById("sideMenu").style.left="-100%";
-}
-const searchInput = document.getElementById("searchInput");
-const links = document.querySelectorAll(".side-menu a");
-
-searchInput.addEventListener("keyup", function(){
-
-    let value = this.value.toLowerCase();
-
-    links.forEach(link => {
-
-        if(link.textContent.toLowerCase().includes(value)){
-            link.style.display = "block";
-        }else{
-            link.style.display = "none";
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !animated) {
+          animated = true;
+          animateStats();
         }
+      });
+    }, { threshold: 0.5 });
 
-    });
+    const statsSection = document.querySelector('.nl-stats');
+    if (statsSection) observer.observe(statsSection);
+  </script>
 
-}); 
-</script>    
 </body>
 </html>
