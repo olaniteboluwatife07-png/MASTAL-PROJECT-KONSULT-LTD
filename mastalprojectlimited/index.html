@@ -24,7 +24,9 @@
 <div id="sideMenu" class="side-menu">
 
     <button class="close-btn" onclick="closeMenu()">✕ CLOSE</button>
-
+<div class="search-box">
+    <input type="text" placeholder="Search..." id="searchInput">
+</div>
     <a href="index.html">Home</a>
     <a href="aboutus.html">About Us</a>
     <a href="services.html">Services</a>
@@ -218,6 +220,25 @@ slides[index].classList.add("active");
 
 }
 
-setInterval(showSlide,5000);        
+setInterval(showSlide,5000);
+        
+ const searchInput = document.getElementById("searchInput");
+const links = document.querySelectorAll(".side-menu a");
+
+searchInput.addEventListener("keyup", function(){
+
+    let value = this.value.toLowerCase();
+
+    links.forEach(link => {
+
+        if(link.textContent.toLowerCase().includes(value)){
+            link.style.display = "block";
+        }else{
+            link.style.display = "none";
+        }
+
+    });
+
+});       
 </script>        
 </html>
