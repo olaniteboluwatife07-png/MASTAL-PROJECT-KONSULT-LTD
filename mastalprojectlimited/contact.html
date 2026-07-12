@@ -8,6 +8,29 @@
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4064757486716340"
      crossorigin="anonymous"></script>
 </head>
+<header>
+    <div class="navbar">
+        <img src="logo.png" class="logo">
+
+        <button id="menuBtn" onclick="openMenu()">☰ MENU</button>
+    </div>
+</header>
+
+<div id="sideMenu" class="side-menu">
+
+    <button class="close-btn" onclick="closeMenu()">✕ CLOSE</button>
+
+    <a href="index.html">Home</a>
+    <a href="aboutus.html">About Us</a>
+    <a href="services.html">Services</a>
+    <a href="vision-mission.html">Portfolio</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="blog.html">Blog</a>
+    <a href="newsletter.html">News</a>
+    <a href="team.html">Our Team</a>
+    <a href="contact.html">Contact Us</a>
+     <a href="commentandshare.html">share</a>
+</div>
 
 <body>
      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4064757486716340"
@@ -67,14 +90,12 @@ mastalprojectkonsult@yahoo.com
     </p>
 </footer>
 <script>
-function toggleMenu() {
-    const menu = document.getElementById("menu");
+function openMenu(){
+    document.getElementById("sideMenu").style.left="0";
+}
 
-    if (menu.style.display === "block") {
-        menu.style.display = "none";
-    } else {
-        menu.style.display = "block";
-    }
+function closeMenu(){
+    document.getElementById("sideMenu").style.left="-100%";
 }
 </script>      
 </body>
