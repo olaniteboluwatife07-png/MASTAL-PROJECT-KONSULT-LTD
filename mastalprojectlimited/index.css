@@ -524,46 +524,6 @@ section{
 
 
 
-#blog{
-    background: linear-gradient(
-        135deg,
-        #001f4d,
-        #003b73,
-        #4fc3f7,
-        #ffffff
-    );
-
-    padding: 50px;
-    margin: 20px;
-    border-radius: 10px;
-}
-
-#blog h2{
-    text-align: center;
-    color: #001f4d;
-    margin-bottom: 30px;
-}
-
-.blog-post{
-    background: rgba(255,255,255,0.85);
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-}
-
-.blog-post h3{
-    color: #001f4d;
-}
-
-.blog-post a{
-    display: inline-block;
-    margin-top: 10px;
-    background: #001f4d;
-    color: white;
-    padding: 8px 15px;
-    text-decoration: none;
-    border-radius: 5px;
-}
 
 #newsletter-articles{
 
