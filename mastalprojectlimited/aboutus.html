@@ -12,27 +12,27 @@
 </head>
 <header>
     <div class="navbar">
-        <div class="logo">Mastal Project Konsult Ltd</div>
+        <img src="logo.png" class="logo">
 
-        <button class="menu-btn" onclick="toggleMenu()">
-            ☰
-        </button>
-    </div>
-
-    <div id="menu" class="menu">
-        <a href="index.html">Home</a>
-        <a href="aboutus.html">About Us</a>
-        <a href="services.html">Services</a>
-        <a href="visionandmission.html">Vision & Mission</a>
-        <a href="core-value.html">Core Values</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="blog.html">Blog</a>
-        <a href="newsletter.html">News</a>
-        <a href="contact.html">Contact Us</a>
-       <a href="shareandcomment.html">share and comment</a>
-       <a href="team.html">Meet Our Team</a>
+        <button id="menuBtn" onclick="openMenu()">☰ MENU</button>
     </div>
 </header>
+
+<div id="sideMenu" class="side-menu">
+
+    <button class="close-btn" onclick="closeMenu()">✕ CLOSE</button>
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="blog.html">Blog</a>
+    <a href="news.html">News</a>
+    <a href="team.html">Our Team</a>
+    <a href="contact.html">Contact Us</a>
+
+</div>
 
 <body>
 <h2 class="about-us">About Us</h2>
@@ -76,14 +76,12 @@ management and housing development consultancy.
 </div>
 <div id="quote">Building your future with integrity.</div>
 <script>
-function toggleMenu() {
-    const menu = document.getElementById("menu");
+function openMenu(){
+    document.getElementById("sideMenu").style.left="0";
+}
 
-    if (menu.style.display === "block") {
-        menu.style.display = "none";
-    } else {
-        menu.style.display = "block";
-    }
+function closeMenu(){
+    document.getElementById("sideMenu").style.left="-100%";
 }
 </script>    
    <amp-ad
