@@ -208,7 +208,7 @@ h1, h2, h3, p {
 .bgimg-1 {
   background-position: center;
   background-size: cover;
-  background-image: url("bol.jpg");
+  background-image: url("images.jpg");
   min-height: 100%;
   height:auto;
   width: 100%;
