@@ -97,6 +97,24 @@ function openMenu(){
 function closeMenu(){
     document.getElementById("sideMenu").style.left="-100%";
 }
+const searchInput = document.getElementById("searchInput");
+const links = document.querySelectorAll(".side-menu a");
+
+searchInput.addEventListener("keyup", function(){
+
+    let value = this.value.toLowerCase();
+
+    links.forEach(link => {
+
+        if(link.textContent.toLowerCase().includes(value)){
+            link.style.display = "block";
+        }else{
+            link.style.display = "none";
+        }
+
+    });
+
+});    
 </script>    
    <amp-ad
      layout="fixed"
