@@ -452,7 +452,7 @@ function renderFeed() {
   container.innerHTML = posts.map((post, index) => {
     const user = getUser(post.userId);
     return `<div class="video-card" data-id="${post.id}" data-index="${index}">
-      ${post.type === 'video' ? <video src="${post.src}" poster="${post.poster || ''}" loop muted playsinline preload="metadata"></video> : <img src="${post.src}" alt="${post.caption}" loading="lazy">}
+      ${post.type === 'video' ? <video src="${post.src}" poster="${post.poster || ''}"> loop muted playsinline preload="metadata"></video> : <img src="${post.src}" alt="${post.caption}" loading="lazy">}
       <div class="media-overlay"></div>
       <div class="double-tap-heart" id="heart-${post.id}">❤️</div>
       <div class="action-bar">
