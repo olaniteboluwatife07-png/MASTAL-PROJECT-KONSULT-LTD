@@ -1,128 +1,604 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="content-security-policy" content="default-scr 'self';">
-<meta charset="UTF-8">
-<style>
-.about-us{
-    text-align:center;
-    margin-bottom:40px;
-    color:#001f4d;
-}
+  <meta http-equiv="content-security-policy" content="default-src 'self';">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>About us</title>
+  <link rel="stylesheet" href="index.css">
+  <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0F172A;
+      --royal: #1E3A8A;
+      --blue: #2563EB;
+      --sky: #38BDF8;
+      --light: #E0F2FE;
+      --ice: #F0F9FF;
+      --white: #FFFFFF;
+      --text: #1E293B;
+    }
 
-.about-us{
-    background:#f5f8fc;
-}
-   
-</style>   
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>About us</title>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--ice); color: var(--text); }
 
-<link rel="stylesheet" href="index.css">
-<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+    /* ===== NAVBAR ===== */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 32px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--royal) 100%);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(30,58,138,0.3);
+    }
+    .logo { height: 50px; border-radius: 8px; }
+    #menuBtn {
+      background: rgba(56,189,248,0.2);
+      color: var(--sky);
+      border: 1px solid rgba(56,189,248,0.4);
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    #menuBtn:hover { background: var(--sky); color: var(--navy); }
+
+    /* ===== SIDE MENU ===== */
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 280px;
+      height: 100vh;
+      background: linear-gradient(180deg, var(--navy) 0%, var(--royal) 100%);
+      padding: 24px;
+      transition: left 0.4s ease;
+      z-index: 200;
+      box-shadow: 4px 0 30px rgba(0,0,0,0.3);
+      overflow-y: auto;
+    }
+    .close-btn {
+      background: rgba(255,255,255,0.1);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+    .close-btn:hover { background: rgba(255,255,255,0.2); }
+    .search-box { margin-bottom: 20px; }
+    .search-box input {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.1);
+      color: var(--white);
+      font-size: 14px;
+      outline: none;
+    }
+    .search-box input::placeholder { color: rgba(255,255,255,0.5); }
+    .side-menu a {
+      display: block;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .side-menu a:hover {
+      background: rgba(56,189,248,0.2);
+      color: var(--sky);
+      transform: translateX(4px);
+    }
+
+    /* ===== SLIDER ===== */
+    .slider-container {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      background: var(--navy);
+    }
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 40px;
+    }
+    .slide.active { opacity: 1; }
+    .slide-bg-1 { background: linear-gradient(135deg, var(--navy) 0%, var(--royal) 50%, var(--blue) 100%); }
+    .slide-bg-2 { background: linear-gradient(135deg, var(--royal) 0%, var(--blue) 50%, var(--sky) 100%); }
+    .slide-bg-3 { background: linear-gradient(135deg, var(--blue) 0%, var(--sky) 50%, var(--light) 100%); }
+    .slide h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      color: var(--white);
+      margin-bottom: 12px;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .slide p {
+      color: rgba(255,255,255,0.85);
+      font-size: 18px;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+    .slide-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      color: var(--sky);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .slider-dots {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .dot.active { background: var(--sky); transform: scale(1.2); }
+    .dot:hover { background: rgba(255,255,255,0.6); }
+
+    /* ===== ABOUT US SECTION ===== */
+    .about-section {
+      text-align: center;
+      padding: 60px 32px;
+      background: linear-gradient(135deg, var(--ice) 0%, var(--light) 100%);
+    }
+    .about-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .about-divider {
+      width: 60px;
+      height: 3px;
+      background: var(--sky);
+      margin: 0 auto 32px;
+      border-radius: 2px;
+    }
+    .about-section p {
+      max-width: 700px;
+      margin: 0 auto 16px;
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    /* ===== CEO SECTION ===== */
+    .ceo-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      padding: 60px 32px;
+      background: var(--white);
+      max-width: 1000px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+    .ceo-photo-wrap {
+      position: relative;
+    }
+    .ceo-photo {
+      width: 220px;
+      height: 280px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--royal) 0%, var(--navy) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 50px rgba(30,58,138,0.25);
+      overflow: hidden;
+      position: relative;
+    }
+    .ceo-photo::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+    }
+    .ceo-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .ceo-initials {
+      font-family: 'Playfair Display', serif;
+      font-size: 72px;
+      font-weight: 900;
+      color: var(--sky);
+      z-index: 1;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .ceo-badge {
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--sky);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(56,189,248,0.4);
+      white-space: nowrap;
+    }
+    .ceo-info { max-width: 500px; }
+    .ceo-info h3 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--royal);
+      margin-bottom: 8px;
+    }
+    .ceo-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .ceo-info .qualifications {
+      display: inline-block;
+      background: var(--light);
+      color: var(--royal);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      border: 1px solid var(--sky);
+    }
+    .ceo-info p {
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    /* ===== QUOTE ===== */
+    .quote-section {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--royal) 100%);
+      padding: 48px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .quote-section::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 120px;
+      color: rgba(56,189,248,0.1);
+      position: absolute;
+      top: -20px;
+      left: 40px;
+      line-height: 1;
+    }
+    .quote-section p {
+      color: rgba(255,255,255,0.9);
+      font-size: 22px;
+      font-style: italic;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+    .quote-author {
+      color: var(--sky);
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 16px;
+      letter-spacing: 1px;
+    }
+
+    /* ===== STATS ===== */
+    .stats-bar {
+      display: flex;
+      justify-content: space-around;
+      padding: 40px 32px;
+      background: var(--white);
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(30,58,138,0.1);
+      transform: translateY(-30px);
+      position: relative;
+      z-index: 10;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .stat-item { text-align: center; flex: 1; min-width: 120px; }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--royal);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 24px;
+      font-size: 13px;
+    }
+
+    /* ===== AMP AD ===== */
+    .ad-section {
+      padding: 32px;
+      text-align: center;
+      background: var(--ice);
+    }
+
+    @media (max-width: 768px) {
+      .slider-container { height: 320px; }
+      .slide h2 { font-size: 28px; }
+      .slide p { font-size: 15px; }
+      .ceo-section { flex-direction: column; text-align: center; }
+      .ceo-photo { width: 160px; height: 200px; }
+      .ceo-initials { font-size: 52px; }
+      .stats-bar { transform: translateY(-20px); margin: 0 16px; }
+      .about-section h2 { font-size: 28px; }
+      .quote-section p { font-size: 18px; }
+    }
+  </style>
 </head>
-<header>
+<body>
+
+  <!-- NAVBAR -->
+  <header>
     <div class="navbar">
-        <img src="logo.jpg" class="logo">
-
-        <button id="menuBtn" onclick="openMenu()">☰ MENU</button>
+      <img src="logo.jpg" class="logo" alt="Mastal Logo">
+      <button id="menuBtn" onclick="openMenu()">&#9776; MENU</button>
     </div>
-</header>
+  </header>
 
-<div id="sideMenu" class="side-menu">
-
-    <button class="close-btn" onclick="closeMenu()">✕ CLOSE</button>
-<div class="search-box">
-    <input type="text" placeholder="Search..." id="searchInput">
-</div>
+  <!-- SIDE MENU -->
+  <div id="sideMenu" class="side-menu">
+    <button class="close-btn" onclick="closeMenu()">X CLOSE</button>
+    <div class="search-box">
+      <input type="text" placeholder="Search..." id="searchInput">
+    </div>
     <a href="index.html">Home</a>
     <a href="aboutus.html">About Us</a>
     <a href="services.html">Services</a>
-    <a href="visionandmission.html">vision</a>
+    <a href="visionandmission.html">Vision</a>
     <a href="gallery.html">Gallery</a>
     <a href="blog.html">Blog</a>
     <a href="newsletter.html">News</a>
     <a href="team.html">Our Team</a>
     <a href="contact.html">Contact Us</a>
-     <a href="shareandcomment.html">share</a>
-</div>
+    <a href="shareandcomment.html">Share</a>
+  </div>
 
+  <!-- SLIDER -->
+  <div class="slider-container">
+    <div class="slide slide-bg-1 active">
+      <div class="slide-badge">Welcome</div>
+      <h2>Mastal Project Konsult</h2>
+      <p>Building excellence since 2013. Your trusted partner in construction consultancy across Nigeria.</p>
+    </div>
+    <div class="slide slide-bg-2">
+      <div class="slide-badge">Our Expertise</div>
+      <h2>Quality Construction</h2>
+      <p>Specialising in roads, estates, schools, business centers, offices and sustainable housing development.</p>
+    </div>
+    <div class="slide slide-bg-3">
+      <div class="slide-badge">Leadership</div>
+      <h2>Meet Our CEO</h2>
+      <p>Olanite Femi Joseph — B.Tech, M.Sc, MNIQS, RQS — leading with integrity and precision.</p>
+    </div>
+    <div class="slider-dots">
+      <span class="dot active" onclick="goToSlide(0)"></span>
+      <span class="dot" onclick="goToSlide(1)"></span>
+      <span class="dot" onclick="goToSlide(2)"></span>
+    </div>
+  </div>
 
-<body>
-<h2 class="about-us">About Us</h2>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4064757486716340"
-     crossorigin="anonymous"></script>
+  <!-- ABOUT US -->
+  <div class="about-section">
+    <h2>About Us</h2>
+    <div class="about-divider"></div>
+    <p>
+      <strong>MASTAL PROJECT KONSULT LIMITED</strong> was incorporated in LAGOS, Nigeria with Registration number RC 1122223. It was registered on 18 Jun 2013. Private Company Limited By Shares.
+    </p>
+    <p>
+      Mastal Project Konsult Limited is a professional consultancy firm specialising in Building, Civil Engineering and Housing Development Consultancy. We provide innovative, cost-effective and sustainable solutions for construction and development projects throughout Nigeria.
+    </p>
+  </div>
 
-<p>
-    MASTAL PROJECT KONSULT LIMITED was incorporated in LAGOS,Nigeria with Registration number RC 1122223.It was registered on 18 June 2013.
-    Company's registered office address is NO27TEMIDIRESTREET,AGBADO,LAGOS,LAGOS. Private Company Limited By Shares.
-</p>
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-number" data-target="12">0</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" data-target="50">0</div>
+      <div class="stat-label">Projects Done</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" data-target="100">0</div>
+      <div class="stat-label">Satisfaction %</div>
+    </div>
+  </div>
 
-<p>
-Mastal Project Konsult Limited is a professional consultancy firm
-specializing in Building, Civil Engineering and Housing Development
-Consultancy. We provide innovative, cost-effective and sustainable
-solutions for construction and development projects throughout Nigeria.
-</p>
+  <!-- CEO SECTION -->
+  <div class="ceo-section">
+    <div class="ceo-photo-wrap">
+      <div class="ceo-photo">
+        <span class="ceo-initials">FJ</span>
+      </div>
+      <div class="ceo-badge">Chief Executive Officer</div>
+    </div>
+    <div class="ceo-info">
+      <h3>Chief Executive Officer</h3>
+      <h2>Olanite Femi Joseph</h2>
+      <div class="qualifications">B.Tech, M.Sc, MNIQS, RQS</div>
+      <p>
+        Mr. Olanite Femi Joseph is an experienced Quantity Surveyor and Construction Consultant with extensive expertise in project cost management, quantity surveying, contract administration, project management and housing development consultancy.
+      </p>
+    </div>
+  </div>
 
-<br><br>
+  <!-- QUOTE -->
+  <div class="quote-section">
+    <p>Building your future with integrity.</p>
+    <div class="quote-author">— Mastal Project Konsult</div>
+  </div>
 
-<div class="ceo">
-<alt="CEO">
+  <!-- AD -->
+  <div class="ad-section">
+    <amp-ad
+      layout="fixed"
+      width="728"
+      height="90"
+      type="adsense"
+      data-ad-client="ca-pub-4064757486716340"
+      data-ad-slot="7940618045">
+    </amp-ad>
+  </div>
 
-<div>
-<h3>Chief Executive Officer</h3>
+  <!-- FOOTER -->
+  <div class="footer">
+    Mastal Project Konsult Limited · Lagos, Nigeria · Quality Construction Consultancy
+  </div>
 
-<h2>Olanite Fẹmi Joseph</h2>
+  <script>
+    // ===== SLIDER =====
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
 
-<p><strong>B.Tech, M.Sc, MNIQS, RQS</strong></p>
+    function goToSlide(index) {
+      slides[currentSlide].classList.remove('active');
+      dots[currentSlide].classList.remove('active');
+      currentSlide = index;
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+    }
 
-<br>
+    function nextSlide() {
+      const next = (currentSlide + 1) % slides.length;
+      goToSlide(next);
+    }
 
-<p>
-Mr. Olanite Fẹmi Joseph is an experienced Quantity Surveyor and
-Construction Consultant with extensive expertise in project cost
-management, quantity surveying, contract administration, project
-management and housing development consultancy.
-</p>
+    setInterval(nextSlide, 5000);
 
-</div>
-</div>
-<div id="quote">Building your future with integrity.</div>
-<script>
-function openMenu(){
-    document.getElementById("sideMenu").style.left="0";
-}
+    // ===== SIDE MENU =====
+    function openMenu() {
+      document.getElementById("sideMenu").style.left = "0";
+    }
+    function closeMenu() {
+      document.getElementById("sideMenu").style.left = "-100%";
+    }
 
-function closeMenu(){
-    document.getElementById("sideMenu").style.left="-100%";
-}
-const searchInput = document.getElementById("searchInput");
-const links = document.querySelectorAll(".side-menu a");
+    // ===== SEARCH =====
+    const searchInput = document.getElementById("searchInput");
+    const links = document.querySelectorAll(".side-menu a");
 
-searchInput.addEventListener("keyup", function(){
-
-    let value = this.value.toLowerCase();
-
-    links.forEach(link => {
-
-        if(link.textContent.toLowerCase().includes(value)){
-            link.style.display = "block";
-        }else{
-            link.style.display = "none";
+    searchInput.addEventListener("keyup", function() {
+      let value = this.value.toLowerCase();
+      links.forEach(link => {
+        if (link.textContent.toLowerCase().includes(value)) {
+          link.style.display = "block";
+        } else {
+          link.style.display = "none";
         }
-
+      });
     });
 
-});    
-</script>    
-   <amp-ad
-     layout="fixed"
-     width="728"
-     height="90"
-     type="adsense"
-     data-ad-client="ca-pub-4064757486716340"
-     data-ad-slot="7940618045">
-</amp-ad>
+    // ===== STATS ANIMATION =====
+    const stats = document.querySelectorAll('.stat-number');
+    let animated = false;
+
+    function animateStats() {
+      stats.forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-target'));
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            stat.textContent = target + (target === 100 ? '%' : '+');
+            clearInterval(timer);
+          } else {
+            stat.textContent = Math.floor(current) + (target === 100 ? '%' : '');
+          }
+        }, 16);
+      });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !animated) {
+          animated = true;
+          animateStats();
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const statsSection = document.querySelector('.stats-bar');
+    if (statsSection) observer.observe(statsSection);
+  </script>
+
 </body>
 </html>
