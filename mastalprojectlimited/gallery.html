@@ -1,120 +1,540 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<style>   
-.imagepage{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:15px;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GALLERY</title>
+  <link rel="stylesheet" href="index.css">
+  <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --deep-blue: #0A192F;
+      --navy: #112240;
+      --royal: #1E3A8A;
+      --blue: #2563EB;
+      --sky: #38BDF8;
+      --light: #E0F2FE;
+      --ice: #F0F9FF;
+      --white: #FFFFFF;
+      --text: #1E293B;
+    }
 
-.imagepage img{
-    width:100%;
-    border-radius:8px;
-}
-</style>  
-<title>GALLERY</title>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--ice); color: var(--text); }
 
-<link rel="stylesheet" href="index.css">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4064757486716340"
-     crossorigin="anonymous"></script>
+    /* ===== NAVBAR ===== */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 32px;
+      background: linear-gradient(135deg, var(--deep-blue) 0%, var(--navy) 100%);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(10,25,47,0.4);
+    }
+    .logo { height: 50px; border-radius: 8px; }
+    #menuBtn {
+      background: rgba(56,189,248,0.15);
+      color: var(--sky);
+      border: 1px solid rgba(56,189,248,0.3);
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    #menuBtn:hover { background: var(--sky); color: var(--deep-blue); }
+
+    /* ===== SIDE MENU ===== */
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 280px;
+      height: 100vh;
+      background: linear-gradient(180deg, var(--deep-blue) 0%, var(--navy) 100%);
+      padding: 24px;
+      transition: left 0.4s ease;
+      z-index: 200;
+      box-shadow: 4px 0 30px rgba(0,0,0,0.3);
+      overflow-y: auto;
+    }
+    .close-btn {
+      background: rgba(255,255,255,0.1);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+    .close-btn:hover { background: rgba(255,255,255,0.2); }
+    .search-box { margin-bottom: 20px; }
+    .search-box input {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.1);
+      color: var(--white);
+      font-size: 14px;
+      outline: none;
+    }
+    .search-box input::placeholder { color: rgba(255,255,255,0.5); }
+    .side-menu a {
+      display: block;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .side-menu a:hover {
+      background: rgba(56,189,248,0.2);
+      color: var(--sky);
+      transform: translateX(4px);
+    }
+
+    /* ===== SLIDER ===== */
+    .slider-container {
+      position: relative;
+      width: 100%;
+      height: 350px;
+      overflow: hidden;
+    }
+    .slide {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 40px;
+    }
+    .slide.active { opacity: 1; }
+    .slide-bg-1 { background: linear-gradient(135deg, var(--deep-blue) 0%, var(--navy) 50%, var(--royal) 100%); }
+    .slide-bg-2 { background: linear-gradient(135deg, var(--navy) 0%, var(--royal) 50%, var(--blue) 100%); }
+    .slide-bg-3 { background: linear-gradient(135deg, var(--royal) 0%, var(--blue) 50%, var(--sky) 100%); }
+    .slide h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      color: var(--white);
+      margin-bottom: 12px;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .slide p {
+      color: rgba(255,255,255,0.9);
+      font-size: 17px;
+      max-width: 550px;
+      line-height: 1.6;
+    }
+    .slide-badge {
+      display: inline-block;
+      background: rgba(56,189,248,0.15);
+      color: var(--sky);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(56,189,248,0.3);
+    }
+    .slider-dots {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+    .dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .dot.active { background: var(--sky); transform: scale(1.2); }
+    .dot:hover { background: rgba(255,255,255,0.6); }
+
+    /* ===== GALLERY HEADER ===== */
+    .gallery-header {
+      background: linear-gradient(135deg, var(--deep-blue) 0%, var(--navy) 100%);
+      padding: 60px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .gallery-header::before {
+      content: '';
+      position: absolute;
+      top: -50%; right: -20%;
+      width: 400px; height: 400px;
+      background: rgba(56,189,248,0.06);
+      border-radius: 50%;
+    }
+    .gallery-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      color: var(--white);
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+    .gallery-header .subtitle {
+      color: rgba(255,255,255,0.6);
+      font-size: 15px;
+      letter-spacing: 1px;
+      position: relative;
+      z-index: 1;
+    }
+    .gallery-divider {
+      width: 60px; height: 3px;
+      background: var(--sky);
+      margin: 20px auto 0;
+      border-radius: 2px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== GALLERY GRID ===== */
+    .imagepage {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 48px 32px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .imagepage img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(30,58,138,0.15);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+      border: 3px solid transparent;
+    }
+    .imagepage img:hover {
+      transform: scale(1.05) translateY(-6px);
+      box-shadow: 0 20px 50px rgba(30,58,138,0.25);
+      border-color: var(--sky);
+    }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(10,25,47,0.95);
+      z-index: 300;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 40px;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 24px; right: 32px;
+      color: var(--white);
+      font-size: 36px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      transition: color 0.3s ease;
+    }
+    .lightbox-close:hover { color: var(--sky); }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--white);
+      font-size: 40px;
+      cursor: pointer;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    .lightbox-nav:hover { background: var(--sky); color: var(--deep-blue); }
+    .lightbox-prev { left: 24px; }
+    .lightbox-next { right: 24px; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: linear-gradient(135deg, var(--deep-blue) 0%, var(--navy) 100%);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 32px 24px;
+    }
+    .footer h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .footer p {
+      font-size: 13px;
+      line-height: 1.8;
+      margin-bottom: 4px;
+    }
+    .footer .ceo-line {
+      color: var(--sky);
+      font-weight: 600;
+      margin-top: 12px;
+    }
+    .footer .copyright {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ===== AD SECTION ===== */
+    .ad-section {
+      padding: 32px;
+      text-align: center;
+      background: var(--ice);
+    }
+
+    @media (max-width: 768px) {
+      .slider-container { height: 300px; }
+      .slide h2 { font-size: 28px; }
+      .gallery-header h2 { font-size: 30px; }
+      .imagepage { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; padding: 24px 16px; }
+      .imagepage img { height: 160px; }
+    }
+  </style>
 </head>
-<header>
+<body>
+
+  <!-- NAVBAR -->
+  <header>
     <div class="navbar">
-        <img src="logo.jpg" class="logo">
-
-        <button id="menuBtn" onclick="openMenu()">☰ MENU</button>
+      <img src="logo.jpg" class="logo" alt="Mastal Logo">
+      <button id="menuBtn" onclick="openMenu()">&#9776; MENU</button>
     </div>
-</header>
+  </header>
 
-<div id="sideMenu" class="side-menu">
-
-    <button class="close-btn" onclick="closeMenu()">✕ CLOSE</button>
-<div class="search-box">
-    <input type="text" placeholder="Search..." id="searchInput">
-</div>
+  <!-- SIDE MENU -->
+  <div id="sideMenu" class="side-menu">
+    <button class="close-btn" onclick="closeMenu()">X CLOSE</button>
+    <div class="search-box">
+      <input type="text" placeholder="Search..." id="searchInput">
+    </div>
     <a href="index.html">Home</a>
     <a href="aboutus.html">About Us</a>
     <a href="services.html">Services</a>
-    <a href="visionandmission.html">vision</a>
+    <a href="visionandmission.html">Vision</a>
     <a href="gallery.html">Gallery</a>
     <a href="blog.html">Blog</a>
     <a href="newsletter.html">News</a>
     <a href="team.html">Our Team</a>
     <a href="contact.html">Contact Us</a>
-     <a href="shareandcomment.html">share</a>
-</div>
+    <a href="shareandcomment.html">Share</a>
+  </div>
 
+  <!-- SLIDER -->
+  <div class="slider-container">
+    <div class="slide slide-bg-1 active">
+      <div class="slide-badge">Our Work</div>
+      <h2>Project Gallery</h2>
+      <p>A showcase of our finest construction and development projects across Nigeria.</p>
+    </div>
+    <div class="slide slide-bg-2">
+      <div class="slide-badge">Portfolio</div>
+      <h2>Building Excellence</h2>
+      <p>From residential estates to commercial complexes, see what we have accomplished.</p>
+    </div>
+    <div class="slide slide-bg-3">
+      <div class="slide-badge">Showcase</div>
+      <h2>Quality in Every Detail</h2>
+      <p>Every project reflects our commitment to integrity, innovation, and client satisfaction.</p>
+    </div>
+    <div class="slider-dots">
+      <span class="dot active" onclick="goToSlide(0)"></span>
+      <span class="dot" onclick="goToSlide(1)"></span>
+      <span class="dot" onclick="goToSlide(2)"></span>
+    </div>
+  </div>
 
-<body>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4064757486716340"
-     crossorigin="anonymous"></script>
-<div class="imagepage">
-<img src="construction-mat.jpg" alt="project 1">
-<img src="blue-print.jpg" alt="project 2">
-<img src="blue-print 2.jpg" alt="project 3">
-<img src="pic1.jpg"alt="project 4">
-<img src="pic2.jpg"alt="project 5">
-<img src="pic4.jpg" alt="project 6">
-<img src="pic3.jpg" alt="project 7">
-<img src="pic5.jpg" alt="project 8">
-<img src="pic10.jpg" alt="project 9">
-<img src="pic11.jpg" alt="project 10">
-<img src="pic13.jpg" alt="project 11">
-<img src="pic14.jpg" alt="project 12">
-<img src="pic15.jpg" alt="project 13">
-<img src="pic16.jpg" alt="project 14">
-<img src="pic17.jpg" alt="project 15">
-<img src="pic20.jpg"alt="project 16">
-<img src="pic21.jpg"alt="project 17">
-<img src="pic22.jpg"alt="project 18">
-<img src="pic27.jpg"alt="project 19">
-<img src="pic28.jpg"alt="project 20">
-<img src="pic29.jpg"alt="project 21">
-<img src="pic30.jpg"alt="project 22">
-<img src="pic33.jpg"alt="project 23">
-<img src="pic36.jpg"alt="project 24">
-<img src="pic37.jpg"alt="project 25">
-<img src="pic38.jpg"alt="project 26">
-<img src="pic39.jpg"alt="project 27">
-<img src="logo.jpg"alt="logo 1">
-<img src="niqslogo.png"alt="logo 2">
-<img src="bo4 (1).jpeg"alt="project 28">
-<img src="bo4 (2).jpeg"alt="project 29">
-<img src="bo4 (3).jpeg"alt="project 30">      
-<img src="bo4 (4).jpeg"alt="project 31">
-<img src="bol3 (1).jpg"alt="project 32">
-<img src="bol.jpg"alt="project 33">      
-<img src="bol3 (3).jpg"alt="project 34">      
-</div> 
-<script>
-function openMenu(){
-    document.getElementById("sideMenu").style.left="0";
-}
+  <!-- GALLERY HEADER -->
+  <div class="gallery-header">
+    <h2>Gallery</h2>
+    <p class="subtitle">Mastal Project Konsult Limited</p>
+    <div class="gallery-divider"></div>
+  </div>
 
-function closeMenu(){
-    document.getElementById("sideMenu").style.left="-100%";
-}
-const searchInput = document.getElementById("searchInput");
-const links = document.querySelectorAll(".side-menu a");
+  <!-- GALLERY GRID -->
+  <div class="imagepage">
+    <img src="blue-print.jpg" alt="project 1" onclick="openLightbox(0)">
+    <img src="blue-print 2.jpg" alt="project 2" onclick="openLightbox(1)">
+    <img src="construction-mat.jpg" alt="project 3" onclick="openLightbox(2)">
+    <img src="pic1.jpg" alt="project 4" onclick="openLightbox(3)">
+    <img src="pic2.jpg" alt="project 5" onclick="openLightbox(4)">
+    <img src="pic3.jpg" alt="project 6" onclick="openLightbox(5)">
+    <img src="pic4.jpg" alt="project 7" onclick="openLightbox(6)">
+    <img src="pic5.jpg" alt="project 8" onclick="openLightbox(7)">
+    <img src="pic10.jpg" alt="project 9" onclick="openLightbox(8)">
+    <img src="pic11.jpg" alt="project 10" onclick="openLightbox(9)">
+    <img src="pic13.jpg" alt="project 11" onclick="openLightbox(10)">
+    <img src="pic14.jpg" alt="project 12" onclick="openLightbox(11)">
+    <img src="pic15.jpg" alt="project 13" onclick="openLightbox(12)">
+    <img src="pic16.jpg" alt="project 14" onclick="openLightbox(13)">
+    <img src="pic17.jpg" alt="project 15" onclick="openLightbox(14)">
+    <img src="pic20.jpg" alt="project 16" onclick="openLightbox(15)">
+    <img src="pic21.jpg" alt="project 17" onclick="openLightbox(16)">
+    <img src="pic22.jpg" alt="project 18" onclick="openLightbox(17)">
+    <img src="pic27.jpg" alt="project 19" onclick="openLightbox(18)">
+    <img src="pic28.jpg" alt="project 20" onclick="openLightbox(19)">
+    <img src="pic29.jpg" alt="project 21" onclick="openLightbox(20)">
+    <img src="pic30.jpg" alt="project 22" onclick="openLightbox(21)">
+    <img src="pic33.jpg" alt="project 23" onclick="openLightbox(22)">
+    <img src="pic36.jpg" alt="project 24" onclick="openLightbox(23)">
+    <img src="pic37.jpg" alt="project 25" onclick="openLightbox(24)">
+    <img src="pic38.jpg" alt="project 26" onclick="openLightbox(25)">
+    <img src="pic39.jpg" alt="project 27" onclick="openLightbox(26)">
+    <img src="nigslogo.png" alt="logo 1" onclick="openLightbox(27)">
+    <img src="bo4 (1).jpeg" alt="project 28" onclick="openLightbox(28)">
+    <img src="bo4 (2).jpeg" alt="project 29" onclick="openLightbox(29)">
+    <img src="bo4 (3).jpeg" alt="project 30" onclick="openLightbox(30)">
+    <img src="bo4 (4).jpeg" alt="project 31" onclick="openLightbox(31)">
+    <img src="bol3 (1).jpg" alt="project 32" onclick="openLightbox(32)">
+    <img src="bol3 (3).jpg" alt="project 33" onclick="openLightbox(33)">
+    <img src="bol3 (4).jpg" alt="project 34" onclick="openLightbox(34)">
+  </div>
 
-searchInput.addEventListener("keyup", function(){
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <button class="lightbox-nav lightbox-prev" onclick="prevImage()">&#10094;</button>
+    <img id="lightboxImg" src="" alt="Gallery Image">
+    <button class="lightbox-nav lightbox-next" onclick="nextImage()">&#10095;</button>
+  </div>
 
-    let value = this.value.toLowerCase();
+  <!-- AD -->
+  <div class="ad-section">
+    <amp-ad
+      layout="fixed"
+      width="728"
+      height="90"
+      type="adsense"
+      data-ad-client="ca-pub-4064757486716340"
+      data-ad-slot="7940618045">
+    </amp-ad>
+  </div>
 
-    links.forEach(link => {
+  <!-- FOOTER -->
+  <div class="footer">
+    <h3>Mastal Project Konsult Limited</h3>
+    <p>Building, Civil & Housing Development Consultants</p>
+    <p>427 Lagos-Abeokuta Expressway, Agege, Lagos State, Nigeria</p>
+    <p>Phone: 08037179651 | 08036320977 | 01-4711492</p>
+    <p>Email: mastalprojectkonsult@yahoo.com</p>
+    <p class="ceo-line">CEO: Olanite Femi Joseph, B.Tech, M.Sc, MNIQS, RQS</p>
+    <p class="copyright">&copy; 2026 Mastal Project Konsult Limited. All Rights Reserved.</p>
+  </div>
 
-        if(link.textContent.toLowerCase().includes(value)){
-            link.style.display = "block";
-        }else{
-            link.style.display = "none";
-        }
+  <script>
+    // ===== SLIDER =====
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
 
+    function goToSlide(index) {
+      slides[currentSlide].classList.remove('active');
+      dots[currentSlide].classList.remove('active');
+      currentSlide = index;
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+    }
+    function nextSlide() {
+      goToSlide((currentSlide + 1) % slides.length);
+    }
+    setInterval(nextSlide, 5000);
+
+    // ===== SIDE MENU =====
+    function openMenu() {
+      document.getElementById("sideMenu").style.left = "0";
+    }
+    function closeMenu() {
+      document.getElementById("sideMenu").style.left = "-100%";
+    }
+
+    // ===== SEARCH =====
+    const searchInput = document.getElementById("searchInput");
+    const links = document.querySelectorAll(".side-menu a");
+    searchInput.addEventListener("keyup", function() {
+      let value = this.value.toLowerCase();
+      links.forEach(link => {
+        link.style.display = link.textContent.toLowerCase().includes(value) ? "block" : "none";
+      });
     });
 
-});    
-</script>
+    // ===== LIGHTBOX =====
+    const galleryImages = document.querySelectorAll('.imagepage img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    let currentImage = 0;
+
+    function openLightbox(index) {
+      currentImage = index;
+      lightboxImg.src = galleryImages[index].src;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+    function nextImage() {
+      currentImage = (currentImage + 1) % galleryImages.length;
+      lightboxImg.src = galleryImages[currentImage].src;
+    }
+    function prevImage() {
+      currentImage = (currentImage - 1 + galleryImages.length) % galleryImages.length;
+      lightboxImg.src = galleryImages[currentImage].src;
+    }
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
+    });
+  </script>
+
 </body>
 </html>
