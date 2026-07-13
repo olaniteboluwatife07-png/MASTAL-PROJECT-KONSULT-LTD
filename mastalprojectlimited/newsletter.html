@@ -524,6 +524,32 @@
     const statsSection = document.querySelector('.nl-stats');
     if (statsSection) observer.observe(statsSection);
   </script>
+<script>
+function openMenu(){
+    document.getElementById("sideMenu").style.left="0";
+}
 
+function closeMenu(){
+    document.getElementById("sideMenu").style.left="-100%";
+}
+const searchInput = document.getElementById("searchInput");
+const links = document.querySelectorAll(".side-menu a");
+
+searchInput.addEventListener("keyup", function(){
+
+    let value = this.value.toLowerCase();
+
+    links.forEach(link => {
+
+        if(link.textContent.toLowerCase().includes(value)){
+            link.style.display = "block";
+        }else{
+            link.style.display = "none";
+        }
+
+    });
+
+});    
+</script>
 </body>
 </html>
